@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-const ContenedorFrase = styled.div`
+const Container = styled.div`
     padding: 3rem;
     border-radius: .5rem;
     background-color: #fff;
@@ -10,6 +10,7 @@ const ContenedorFrase = styled.div`
     @media (min-width: 992px) {
         margin-top: 10rem;
     }
+
     h1 {
         font-family: Arial, Helvetica, sans-serif;
         text-align: center;
@@ -33,18 +34,18 @@ const ContenedorFrase = styled.div`
         margin-top: 2rem;
     }
 `;
-const Frase = ({ frase }) => {
 
-    if (Object.keys(frase).length === 0) return null
+
+const Text = ({ text }) => {
+
+    if (Object.keys(text).length === 0) return null
 
     return (
-        <ContenedorFrase>
-            <h1>
-                {frase.quote}
-            </h1>
-            <p>{frase.author}</p>
-        </ContenedorFrase>
+        <Container>
+            <h1>{text.quote}</h1>
+            <p>{text.author}</p>
+        </Container>
     )
 }
 
-export default Frase
+export default Text

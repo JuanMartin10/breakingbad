@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled'
-import Frase from './components/Frase'
-const Contenedor = styled.div`
+import Text from './components/Text'
+
+const Container = styled.div`
   display: flex;
   align-items: center;
   padding-top: 5rem;
   flex-direction: column;
 ` ;
 
-const Boton = styled.button`
+const Button = styled.button`
   background: -webkit-linear-gradient(top left, #007d35 0%, #007d35 40%, #0f574e 100%);
   background-size: 300px;
   font-family:  Arial, Helvetica, sans-serif;
@@ -27,27 +28,33 @@ const Boton = styled.button`
 
 function App() {
 
-  const [frase, guardarFrase] = useState({})
+  const [text, setText] = useState({})
 
-  const consultarAPI = async () => {
+  // const apiConsult = async () => {
+  // fetch('https://breaking-bad-quotes.herokuapp.com/v1/quotes')
+  //   .then(data => data.json())
+  //   .then(result => console.log(result))
+  // }
+
+
+  const apiConsult = async () => {
     const api = await fetch('https://breaking-bad-quotes.herokuapp.com/v1/quotes')
-    const frase = await api.json()
-    guardarFrase(frase[0])
+    const text = await api.json()
+    setText(text[0])
   }
-  useEffect(() => {
-    consultarAPI()
-  }, [])
-  return (
-    <Contenedor>
-      <Frase
-        frase={frase}
-      />
-      <Boton
-        onClick={() => consultarAPI()}
-      >
-        Obtener frase</Boton>
 
-    </Contenedor>
+  useEffect(() => {
+    apiConsult()
+  }, [])
+
+  return (
+    <Container>
+      <Text
+        text={text}
+      />
+      <Button onClick={() => apiConsult()}>Obtener cita</Button>
+
+    </Container>
   );
 }
 
